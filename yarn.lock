@@ -454,6 +454,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-icons@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "@radix-ui/react-icons@npm:1.3.1"
+  peerDependencies:
+    react: ^16.x || ^17.x || ^18.x || ^19.x
+  checksum: df2c7c7b4bf6df7d869d4d7520abdf11262c3a557e39e5fad1d9ef6315c91af8ccb26537ba700c99ec0a996c137f84693b90ad039bba5ec160c2a1d44e8d9b2f
+  languageName: node
+  linkType: hard
+
 "@rtsao/scc@npm:^1.1.0":
   version: 1.1.0
   resolution: "@rtsao/scc@npm:1.1.0"
@@ -1049,6 +1058,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "class-variance-authority@npm:0.7.0"
+  dependencies:
+    clsx: 2.0.0
+  checksum: e7fd1fab433ef06f52a1b7b241b70b4a185864deef199d3b0a2c3412f1cc179517288264c383f3b971a00d76811625fc8f7ffe709e6170219e88cd7368f08a20
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -1060,6 +1078,20 @@ __metadata:
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
   checksum: 0c16bf660dadb90610553c1d8946a7fdfb81d624adea073b8440b7d795d5b5b08beb3c950c6a2cf16279365a3265158a236876d92bce16423c485c322d7dfaf8
+  languageName: node
+  linkType: hard
+
+"clsx@npm:2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
   languageName: node
   linkType: hard
 
@@ -2672,7 +2704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -2687,6 +2719,15 @@ __metadata:
   version: 10.4.3
   resolution: "lru-cache@npm:10.4.3"
   checksum: 6476138d2125387a6d20f100608c2583d415a4f64a0fecf30c9e2dda976614f09cad4baa0842447bd37dd459a7bd27f57d9d8f8ce558805abd487c583f3d774a
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.454.0":
+  version: 0.454.0
+  resolution: "lucide-react@npm:0.454.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
+  checksum: 6f4dc004d84730fd7b246d531a4b801e850ba81e390bd1ac3bd66a4e02ee6dd81e023acf789eb8aec5c030c53915d058badda174d6095664610fe41ba1310208
   languageName: node
   linkType: hard
 
@@ -3350,14 +3391,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-02c0e824-20241028":
-  version: 19.0.0-rc-02c0e824-20241028
-  resolution: "react-dom@npm:19.0.0-rc-02c0e824-20241028"
+"react-dom@npm:18":
+  version: 18.3.1
+  resolution: "react-dom@npm:18.3.1"
   dependencies:
-    scheduler: 0.25.0-rc-02c0e824-20241028
+    loose-envify: ^1.1.0
+    scheduler: ^0.23.2
   peerDependencies:
-    react: 19.0.0-rc-02c0e824-20241028
-  checksum: 7e65307af83920c84775c82f6beda63d74aac094764bd1a8827cd7bb51648d72da31ead2156a3309ed748eb68d89fbc932060b9aad26d955cd9747284ce5b0ae
+    react: ^18.3.1
+  checksum: 298954ecd8f78288dcaece05e88b570014d8f6dce5db6f66e6ee91448debeb59dcd31561dddb354eee47e6c1bb234669459060deb238ed0213497146e555a0b9
   languageName: node
   linkType: hard
 
@@ -3368,10 +3410,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-02c0e824-20241028":
-  version: 19.0.0-rc-02c0e824-20241028
-  resolution: "react@npm:19.0.0-rc-02c0e824-20241028"
-  checksum: 0065b5e2ecc445c7b8dbcef423885f276167eed620480ed476bd0aaa35ec6017dc98a7bb8a281aee7d45b3a6b6f0f907a7e4d73883940250aca904b60e11b7e9
+"react@npm:18":
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: a27bcfa8ff7c15a1e50244ad0d0c1cb2ad4375eeffefd266a64889beea6f6b64c4966c9b37d14ee32d6c9fcd5aa6ba183b6988167ab4d127d13e7cb5b386a376
   languageName: node
   linkType: hard
 
@@ -3550,10 +3594,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-02c0e824-20241028":
-  version: 0.25.0-rc-02c0e824-20241028
-  resolution: "scheduler@npm:0.25.0-rc-02c0e824-20241028"
-  checksum: 13a8c5762b3f886d88e418d14c5eeb5ff70ccc33a2c0f6bbc48d869b950059d4830835cd8fddf611d8dba22e765833e6af0b324a4ce3eff633879bbc080bc08c
+"scheduler@npm:^0.23.2":
+  version: 0.23.2
+  resolution: "scheduler@npm:0.23.2"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
 
@@ -3951,6 +3997,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^2.5.4":
+  version: 2.5.4
+  resolution: "tailwind-merge@npm:2.5.4"
+  checksum: c22adafebd23fc3c7f0ad25935791c10816d4a46460f000ebca4de8d8d22f7652a3746a3d9146599a4648aa92ab390340f6ded04b9152afd2b75fd96929399db
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: c1760983eb3fec0c8421e95082bf308e6845df43e2f90862386366e82545c801b26b4d189c4cd23d6915252b76d18005c8e5f591f8b119944c7fb8650d0f8bce
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3.4.1":
   version: 3.4.14
   resolution: "tailwindcss@npm:3.4.14"
@@ -4306,16 +4368,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "workout-planner-pro@workspace:."
   dependencies:
+    "@radix-ui/react-icons": ^1.3.1
     "@types/node": ^20
     "@types/react": ^18
     "@types/react-dom": ^18
+    class-variance-authority: ^0.7.0
+    clsx: ^2.1.1
     eslint: ^8
     eslint-config-next: 15.0.2
+    lucide-react: ^0.454.0
     next: 15.0.2
     postcss: ^8
-    react: 19.0.0-rc-02c0e824-20241028
-    react-dom: 19.0.0-rc-02c0e824-20241028
+    react: 18
+    react-dom: 18
+    tailwind-merge: ^2.5.4
     tailwindcss: ^3.4.1
+    tailwindcss-animate: ^1.0.7
     typescript: ^5
   languageName: unknown
   linkType: soft
