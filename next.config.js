@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+// import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+// const nextConfig: NextConfig = {
+//   /* config options here */
+//   experimental: {
+//     swcPlugins: [["@preact-signals/safe-react/swc", {}]],
+//   },
+// };
+
+// export default nextConfig;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   experimental: {
     swcPlugins: [
       [
@@ -16,4 +25,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
