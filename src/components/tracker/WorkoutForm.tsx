@@ -1,6 +1,6 @@
 "use client";
 
-import { signal } from "@preact/signals";
+import { signal } from "@preact-signals/safe-react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +27,9 @@ const exercises = signal<Exercise[]>([
   { muscle: "", sets: 1, reps: "", weight: "" },
 ]);
 
+const startTime = signal<string>("");
+const endTime = signal<string>("");
+
 function addExercise() {
   exercises.value = [
     ...exercises.value,
@@ -48,6 +51,33 @@ function updateExercise(
   updatedExercises[index] = { ...updatedExercises[index], [field]: value };
   exercises.value = updatedExercises;
 }
+
+// Key for localStorage
+const WORKOUT_STORAGE_KEY = "workoutData";
+
+// Save exercises to localStorage
+function saveWorkoutToLocalStorage() {
+  const workoutData = {
+    exercises: exercises.value,
+    startTime: startTime.value,
+    endTime: endTime.value,
+  };
+  localStorage.setItem(WORKOUT_STORAGE_KEY, JSON.stringify(workoutData));
+}
+
+// Load exercises from localStorage on component mount
+function loadWorkoutFromLocalStorage() {
+  const storedData = localStorage.getItem(WORKOUT_STORAGE_KEY);
+  if (storedData) {
+    const parsedData = JSON.parse(storedData);
+    exercises.value = parsedData.exercises;
+    startTime.value = parsedData.startTime || "";
+    endTime.value = parsedData.endTime || "";
+  }
+}
+
+// Call loadWorkoutFromLocalStorage when the component mounts
+loadWorkoutFromLocalStorage();
 
 export function WorkoutForm() {
   return (
@@ -96,7 +126,7 @@ export function WorkoutForm() {
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline">Cancel</Button>
-          <Button>Save Workout</Button>
+          <Button onClick={saveWorkoutToLocalStorage}>Save Workout</Button>
         </CardFooter>
       </Card>
     </div>
