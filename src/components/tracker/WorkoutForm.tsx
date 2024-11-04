@@ -52,32 +52,32 @@ function updateExercise(
   exercises.value = updatedExercises;
 }
 
-// Key for localStorage
-const WORKOUT_STORAGE_KEY = "workoutData";
+// // Key for localStorage
+// const WORKOUT_STORAGE_KEY = "workoutData";
 
-// Save exercises to localStorage
-function saveWorkoutToLocalStorage() {
-  const workoutData = {
-    exercises: exercises.value,
-    startTime: startTime.value,
-    endTime: endTime.value,
-  };
-  localStorage.setItem(WORKOUT_STORAGE_KEY, JSON.stringify(workoutData));
-}
+// // Save exercises to localStorage
+// function saveWorkoutToLocalStorage() {
+//   const workoutData = {
+//     exercises: exercises.value,
+//     startTime: startTime.value,
+//     endTime: endTime.value,
+//   };
+//   localStorage.setItem(WORKOUT_STORAGE_KEY, JSON.stringify(workoutData));
+// }
 
-// Load exercises from localStorage on component mount
-function loadWorkoutFromLocalStorage() {
-  const storedData = localStorage.getItem(WORKOUT_STORAGE_KEY);
-  if (storedData) {
-    const parsedData = JSON.parse(storedData);
-    exercises.value = parsedData.exercises;
-    startTime.value = parsedData.startTime || "";
-    endTime.value = parsedData.endTime || "";
-  }
-}
+// // Load exercises from localStorage on component mount
+// function loadWorkoutFromLocalStorage() {
+//   const storedData = localStorage.getItem(WORKOUT_STORAGE_KEY);
+//   if (storedData) {
+//     const parsedData = JSON.parse(storedData);
+//     exercises.value = parsedData.exercises;
+//     startTime.value = parsedData.startTime || "";
+//     endTime.value = parsedData.endTime || "";
+//   }
+// }
 
-// Call loadWorkoutFromLocalStorage when the component mounts
-loadWorkoutFromLocalStorage();
+// // Call loadWorkoutFromLocalStorage when the component mounts
+// loadWorkoutFromLocalStorage();
 
 export function WorkoutForm() {
   return (
@@ -126,7 +126,7 @@ export function WorkoutForm() {
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline">Cancel</Button>
-          <Button onClick={saveWorkoutToLocalStorage}>Save Workout</Button>
+          <Button >Save Workout</Button>
         </CardFooter>
       </Card>
     </div>
