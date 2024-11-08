@@ -19,14 +19,14 @@ export default function ExerciseFields({
   onRemove
 }: ExerciseFieldsProps) {
   return (
-    <div className="flex flex-wrap items-end gap-2 border p-2 rounded">
-      <div className="flex-1 min-w-[200px]">
-        <Label htmlFor={`muscle-${index}`}>Muscle Group</Label>
+    <div className="flex flex-col sm:flex-row flex-wrap items-end gap-4 border border-gray-200 p-4 rounded-lg bg-white shadow-sm mb-4">
+      <div className="w-full sm:w-auto flex-grow">
+        <Label htmlFor={`muscle-${index}`} className="mb-2 block">Muscle Group</Label>
         <Select
           value={exercise.muscle}
           onValueChange={(value) => onUpdate(index, "muscle", value)}
         >
-          <SelectTrigger id={`muscle-${index}`}>
+          <SelectTrigger id={`muscle-${index}`} className="w-full">
             <SelectValue placeholder="Select muscle group" />
           </SelectTrigger>
           <SelectContent>
@@ -41,8 +41,8 @@ export default function ExerciseFields({
         </Select>
       </div>
       {exercise.muscle === "custom" && (
-        <div className="flex-1 min-w-[200px]">
-          <Label htmlFor={`custom-muscle-${index}`}>Custom Muscle Group</Label>
+        <div className="w-full sm:w-auto flex-grow">
+          <Label htmlFor={`custom-muscle-${index}`} className="mb-2 block">Custom Muscle Group</Label>
           <Input
             id={`custom-muscle-${index}`}
             placeholder="Enter custom muscle group"
@@ -51,38 +51,35 @@ export default function ExerciseFields({
           />
         </div>
       )}
-      <div>
-        <Label htmlFor={`sets-${index}`}>Sets</Label>
+      <div className="w-full sm:w-24">
+        <Label htmlFor={`sets-${index}`} className="mb-2 block">Sets</Label>
         <Input
           id={`sets-${index}`}
           type="number"
           min="1"
           value={exercise.sets}
           onChange={(e) => onUpdate(index, "sets", parseInt(e.target.value))}
-          className="w-20"
         />
       </div>
-      <div>
-        <Label htmlFor={`reps-${index}`}>Reps</Label>
+      <div className="w-full sm:w-32">
+        <Label htmlFor={`reps-${index}`} className="mb-2 block">Reps</Label>
         <Input
           id={`reps-${index}`}
           placeholder="e.g., 10-12"
           value={exercise.reps}
           onChange={(e) => onUpdate(index, "reps", e.target.value)}
-          className="w-24"
         />
       </div>
-      <div>
-        <Label htmlFor={`weight-${index}`}>Weight</Label>
+      <div className="w-full sm:w-32">
+        <Label htmlFor={`weight-${index}`} className="mb-2 block">Weight</Label>
         <Input
           id={`weight-${index}`}
           placeholder="lbs or kg"
           value={exercise.weight}
           onChange={(e) => onUpdate(index, "weight", e.target.value)}
-          className="w-24"
         />
       </div>
-      <Button type="button" variant="outline" size="icon" onClick={() => onRemove(index)}>
+      <Button type="button" variant="outline" size="icon" onClick={() => onRemove(index)} className="mt-4 sm:mt-0">
         <Minus className="h-4 w-4" />
       </Button>
     </div>

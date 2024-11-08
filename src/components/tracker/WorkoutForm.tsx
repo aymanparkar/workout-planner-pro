@@ -3,14 +3,6 @@
 import { signal } from "@preact-signals/safe-react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ExerciseFields from "./ExerciseField";
@@ -33,9 +25,8 @@ const endTime = signal<string>("");
 function addExercise() {
   exercises.value = [
     ...exercises.value,
-    { muscle: "Chest", sets: 1, reps: "10", weight: "10kg" },
+    { muscle: "chest", sets: 1, reps: "10", weight: "10kg" },
   ];
-  console.log("HELLO WORLD");
 }
 
 function removeExercise(index: number) {
@@ -52,56 +43,81 @@ function updateExercise(
   exercises.value = updatedExercises;
 }
 
-// // Key for localStorage
-// const WORKOUT_STORAGE_KEY = "workoutData";
-
-// // Save exercises to localStorage
-// function saveWorkoutToLocalStorage() {
-//   const workoutData = {
-//     exercises: exercises.value,
-//     startTime: startTime.value,
-//     endTime: endTime.value,
-//   };
-//   localStorage.setItem(WORKOUT_STORAGE_KEY, JSON.stringify(workoutData));
-// }
-
-// // Load exercises from localStorage on component mount
-// function loadWorkoutFromLocalStorage() {
-//   const storedData = localStorage.getItem(WORKOUT_STORAGE_KEY);
-//   if (storedData) {
-//     const parsedData = JSON.parse(storedData);
-//     exercises.value = parsedData.exercises;
-//     startTime.value = parsedData.startTime || "";
-//     endTime.value = parsedData.endTime || "";
-//   }
-// }
-
-// // Call loadWorkoutFromLocalStorage when the component mounts
-// loadWorkoutFromLocalStorage();
-
 export function WorkoutForm() {
+  
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+
+    const workoutData = {
+      startTime: startTime.value,
+      endTime: endTime.value,
+      exercises: exercises.value,
+    };
+
+    try {
+      const response = await fetch("/api/saveWorkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(workoutData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Workout saved:", result);
+
+        startTime.value = "";
+        endTime.value = "";
+        exercises.value = [{ muscle: "", sets: 1, reps: "", weight: "" }];
+      } else {
+        console.error("Failed to save workout", response.statusText);
+      }
+    } catch (error) {
+      console.error("An error occurred while saving the workout:", error);
+    }
+  }
+
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <Card className="w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle>Log Workout</CardTitle>
-          <CardDescription>
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white shadow-sm rounded-lg p-6 sm:p-8">
+          <h1 className="text-2xl font-semibold text-gray-900 mb-6">
+            Log Workout
+          </h1>
+          <p className="text-gray-600 mb-8">
             Record your workout details and progress.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="startTime">Workout Start Time</Label>
-                <Input id="startTime" type="time" />
+          </p>
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="startTime" className="mb-2 block">
+                    Workout Start Time
+                  </Label>
+                  <Input
+                    id="startTime"
+                    type="time"
+                    value={startTime.value}
+                    onChange={(e) => (startTime.value = e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="endTime" className="mb-2 block">
+                    Workout End Time
+                  </Label>
+                  <Input
+                    id="endTime"
+                    type="time"
+                    value={endTime.value}
+                    onChange={(e) => (endTime.value = e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="endTime">Workout End Time</Label>
-                <Input id="endTime" type="time" />
-              </div>
-              <div className="space-y-2">
-                <Label>Exercises</Label>
+              <div>
+                <h2 className="text-lg font-medium text-gray-900 mb-4">
+                  Exercises
+                </h2>
                 {exercises.value.map((exercise, index) => (
                   <ExerciseFields
                     key={index}
@@ -116,19 +132,19 @@ export function WorkoutForm() {
                   variant="outline"
                   size="sm"
                   onClick={addExercise}
-                  className="mt-2"
+                  className="mt-4"
                 >
                   <Plus className="h-4 w-4 mr-2" /> Add Exercise
                 </Button>
               </div>
             </div>
+            <div className="mt-8 flex justify-end space-x-4">
+              <Button variant="outline">Cancel</Button>
+              <Button type="submit">Save Workout</Button>
+            </div>
           </form>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button >Save Workout</Button>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
